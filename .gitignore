@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Assessment data.
+# Nothing containing a real organisation's assessment answers or evidence belongs
+# in this repository. A completed self-assessment is a map of where an organisation
+# is weakest, which makes it one of the more sensitive documents it owns. Example
+# fixtures used by the tests live under examples/ and are deliberately fictional.
+assessments/
+*.assessment.json
+reports/
