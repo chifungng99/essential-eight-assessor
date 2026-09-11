@@ -19,3 +19,10 @@ htmlcov/
 assessments/
 *.assessment.json
 reports/
+
+# Official ASD source documents.
+# Kept locally so the project is self-contained on disk, but never committed. The
+# text is CC BY 4.0, however the Commonwealth Coat of Arms and the ASD logo inside
+# these PDFs are explicitly excluded from that licence, so redistributing the files
+# would redistribute those marks. README.md says where to download them.
+sources/

@@ -185,7 +185,7 @@ Three layers:
 | Stage | Deliverable | Gate |
 |---|---|---|
 | 0 | Obtain the official maturity model | **Done.** November 2023 model and October 2024 assessment process guide supplied |
-| 1 | Control set JSON for three strategies, schema validation, tests | Jackson reviews criteria against the official model |
+| 1 | Control set JSON for three strategies, schema validation, tests | **Built, 28 tests passing.** Awaiting Jackson's review of the extracted criteria against Appendices A to C |
 | 2 | Scoring engine, worked-example tests, invariant tests | All tests pass |
 | 3 | CLI and answers file handling | Runs end to end on a fixture |
 | 4 | Markdown and HTML report rendering | Golden-file tests |
@@ -198,13 +198,13 @@ Three layers:
    supplied as the official PDFs. November 2023 confirmed as the current version.
 2. ~~Copyright.~~ **Resolved.** CC BY 4.0, attribution required, Coat of Arms and
    ASD logo excluded.
-3. **`max_age_days` default.** 180 or 365. Given the Essentials transition, shorter
-   is arguably more honest.
-4. **Not applicable.** ASD does not really contemplate N/A for Essential Eight
-   criteria. Proposal: do not offer it. `unknown` covers genuine uncertainty and
-   scores safely.
-5. **Test runner.** Plain Python test files, matching Mission Control, or pytest.
-   pytest is more recognisable to a reviewer and makes the invariant tests easier.
+3. ~~`max_age_days` default.~~ **Resolved: 180.**
+4. ~~Not applicable.~~ **Resolved: not offered.** `unknown` covers genuine
+   uncertainty and scores as not met.
+5. ~~Test runner.~~ **Resolved: stdlib `unittest`, not pytest.** Changed from the
+   original recommendation. The build environment has no package index, and a
+   compliance tool whose own test suite needs one is a tool nobody will verify.
+   `python3 -m unittest discover -s tests`, zero dependencies.
 
 ## 12. Risks and assumptions
 
@@ -224,4 +224,24 @@ assumption fails loudly rather than silently.
 
 ---
 
-**Please review and approve before I build.**
+## 13. Where this is up to
+
+**Stage 1 complete.** Control set built from the official PDF, 55 unique criteria
+across three strategies, loader and validator with 28 passing tests.
+
+**Blocked on one human step:** Jackson reviews `tools/review_controls.py` output
+against Appendices A to C. No test in this repository has read the source document
+or has any judgement about what the requirements say, so this gate is the only thing
+standing between an extraction bug and a tool that rates confidently against wrong
+criteria.
+
+**Stage 2 next:** the scoring engine. Worked-example tests plus the monotonicity
+invariant (changing an answer from met to not_met must never raise the awarded
+level). The data model is settled, so this is largely mechanical.
+
+**Run everything:**
+
+```
+python3 -m unittest discover -s tests -v
+python3 tools/review_controls.py --level 1
+```
