@@ -2,6 +2,7 @@
 
 **Status:** draft, awaiting sign-off
 **Written:** 11-09-2026
+**Revised:** 11-09-2026 after reading the official ASD source documents
 **Author:** Jackson Ng, with Claude
 
 ---
@@ -30,9 +31,16 @@ Measurable, and each one is a test:
 1. Given a complete answer set, returns a maturity level of 0 to 3 for each
    in-scope mitigation strategy.
 2. Level assignment follows ASD's rule: the awarded level is the **highest level
-   at which every criterion of that level and all levels below it is met.** Partial
-   achievement of a level awards the level below. Proven by tests, including the
-   case where a single Maturity Level One criterion fails and the result is Zero.
+   whose own complete requirement set is fully met.** Partial achievement of a level
+   awards the level below. Proven by tests, including the case where a single
+   Maturity Level One criterion fails and the result is Zero.
+
+   This is a correction to the first draft, which said "that level and all levels
+   below it". Reading the published model shows each appendix restates the full
+   requirement set for its level rather than listing only the additions, and higher
+   levels sometimes tighten the wording of a requirement rather than adding a new
+   one. Evaluating lower levels as well is therefore redundant, and would be wrong
+   wherever a stricter requirement supersedes a weaker one.
 3. Every rating is traceable. The report names the specific criteria that were not
    met and which level each belongs to. No summary number appears without the
    criteria behind it.
@@ -74,8 +82,13 @@ Deliberately, and each for a reason:
 
 ## 5. Constraints
 
-- **No verbatim ASD text** until the copyright position is confirmed. Criteria are
-  stored as paraphrase plus official identifier plus source link.
+- **ASD text is reproduced verbatim, under CC BY 4.0, with attribution.** Resolved:
+  the maturity model states it is (c) Commonwealth of Australia 2023 and licensed
+  Creative Commons Attribution 4.0 International, excluding the Coat of Arms and the
+  ASD logo. Verbatim criteria are therefore permitted and preferable to paraphrase,
+  because a compliance tool that quietly reworded the requirements would be worse
+  than useless. Neither the Coat of Arms nor the ASD logo goes anywhere near this
+  repository.
 - **Python 3.9+, standard library only** for the core. A reviewer should be able to
   read the whole thing without installing anything. Test tooling may be an exception.
 - **The tool never writes to the control set.** Criteria are read-only input.
@@ -110,11 +123,19 @@ fills a gap on the user's behalf.
 version        "November 2023"
 sourced_on     ISO date the criteria were transcribed from the official model
 source_url     link to the published model
+licence        "CC BY 4.0", attribution string
 max_age_days   how stale the set may be before the tool refuses to rate
-strategies[]   id, name, official_ref
-  levels{1,2,3}
-    criteria[]   id, requirement (paraphrase), question, official_ref
+strategies[]   id, name
+  criteria[]   id, text (verbatim), required_at_levels [1,2,3]
 ```
+
+**Criteria are canonical, not per-level.** The published model restates shared
+requirements in every appendix that needs them: the same asset discovery requirement
+appears identically at Maturity Levels One, Two and Three. Storing them per level
+would mean roughly 114 entries across the three in-scope strategies, and would make
+a user answer the identical question three times. Instead each distinct requirement
+is stored once and tagged with the levels that require it. The user answers once,
+and the engine evaluates each level's set by selecting on that tag.
 
 **Answers** (user-supplied, gitignored):
 
@@ -163,7 +184,7 @@ Three layers:
 
 | Stage | Deliverable | Gate |
 |---|---|---|
-| 0 | Obtain the official maturity model | **Blocked, see below** |
+| 0 | Obtain the official maturity model | **Done.** November 2023 model and October 2024 assessment process guide supplied |
 | 1 | Control set JSON for three strategies, schema validation, tests | Jackson reviews criteria against the official model |
 | 2 | Scoring engine, worked-example tests, invariant tests | All tests pass |
 | 3 | CLI and answers file handling | Runs end to end on a fixture |
@@ -172,14 +193,11 @@ Three layers:
 
 ## 11. Open questions
 
-1. **The criteria themselves.** Claude's research tool is blocked from cyber.gov.au,
-   so it cannot read the official model. **Jackson must supply it**, by downloading
-   the PDF or pasting the criteria. This is stage 0 and nothing proceeds without it.
-   This is arguably the right division of labour anyway: the Lead Auditor should be
-   the one transcribing the control text.
-2. **Copyright.** Is cyber.gov.au content Creative Commons, and under what
-   attribution? If it is, the real text can be included properly attributed, which
-   makes the tool considerably more useful.
+1. ~~The criteria themselves.~~ **Resolved.** Essential Eight Maturity Model
+   (November 2023) and Essential Eight Assessment Process Guide (October 2024)
+   supplied as the official PDFs. November 2023 confirmed as the current version.
+2. ~~Copyright.~~ **Resolved.** CC BY 4.0, attribution required, Coat of Arms and
+   ASD logo excluded.
 3. **`max_age_days` default.** 180 or 365. Given the Essentials transition, shorter
    is arguably more honest.
 4. **Not applicable.** ASD does not really contemplate N/A for Essential Eight
@@ -198,8 +216,11 @@ Three layers:
 | Scope creep to all eight strategies | Named in Out of Scope. Revisit only after stage 5 ships |
 | An assessment file gets committed | `.gitignore` written before any such file can exist |
 
-**Assumption:** the November 2023 model is still current. Reported as such as at
-August 2026, but not verified by Claude directly against ASD.
+**Assumption:** the November 2023 model is still current. The supplied PDF is the
+November 2023 edition and no later edition has been published, but ASD's consultation
+on the Essentials series closed in July 2026 and a successor may appear during the
+build. The `sourced_on` and `max_age_days` fields exist precisely so that this
+assumption fails loudly rather than silently.
 
 ---
 
