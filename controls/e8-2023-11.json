@@ -1,0 +1,531 @@
+{
+  "model": "ASD Essential Eight Maturity Model",
+  "version": "November 2023",
+  "source_url": "https://www.cyber.gov.au/business-government/asds-cyber-security-frameworks/essential-eight/essential-eight-maturity-model",
+  "sourced_on": "2026-09-11",
+  "max_age_days": 180,
+  "licence": {
+    "name": "CC BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "Essential Eight Maturity Model (November 2023), © Commonwealth of Australia 2023, Australian Signals Directorate, licensed under CC BY 4.0. The Commonwealth Coat of Arms and the ASD logo are excluded from this licence and are not reproduced here."
+  },
+  "strategies": [
+    {
+      "id": "patch-apps",
+      "name": "Patch applications",
+      "criteria": [
+        {
+          "id": "patch-apps-01",
+          "text": "An automated method of asset discovery is used at least fortnightly to support the detection of assets for subsequent vulnerability scanning activities.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "cd671f4de2cc"
+        },
+        {
+          "id": "patch-apps-02",
+          "text": "A vulnerability scanner with an up-to-date vulnerability database is used for vulnerability scanning activities.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "1d5914555577"
+        },
+        {
+          "id": "patch-apps-03",
+          "text": "A vulnerability scanner is used at least daily to identify missing patches or updates for vulnerabilities in online services.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "30ae79506d97"
+        },
+        {
+          "id": "patch-apps-04",
+          "text": "A vulnerability scanner is used at least weekly to identify missing patches or updates for vulnerabilities in office productivity suites, web browsers and their extensions, email clients, PDF software, and security products.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "bac549f87836"
+        },
+        {
+          "id": "patch-apps-05",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in online services are applied within 48 hours of release when vulnerabilities are assessed as critical by vendors or when working exploits exist.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "3caddfe65f4d"
+        },
+        {
+          "id": "patch-apps-06",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in online services are applied within two weeks of release when vulnerabilities are assessed as non-critical by vendors and no working exploits exist.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "e942b871f220"
+        },
+        {
+          "id": "patch-apps-07",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in office productivity suites, web browsers and their extensions, email clients, PDF software, and security products are applied within two weeks of release.",
+          "required_at_levels": [
+            1,
+            2
+          ],
+          "sha256": "49bc08aae82b"
+        },
+        {
+          "id": "patch-apps-08",
+          "text": "Online services that are no longer supported by vendors are removed.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "b7106f882a4e"
+        },
+        {
+          "id": "patch-apps-09",
+          "text": "Office productivity suites, web browsers and their extensions, email clients, PDF software, Adobe Flash Player, and security products that are no longer supported by vendors are removed.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "4dd49293a1b2"
+        },
+        {
+          "id": "patch-apps-10",
+          "text": "A vulnerability scanner is used at least fortnightly to identify missing patches or updates for vulnerabilities in applications other than office productivity suites, web browsers and their extensions, email clients, PDF software, and security products.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "c64a4cfa92d2"
+        },
+        {
+          "id": "patch-apps-11",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in applications other than office productivity suites, web browsers and their extensions, email clients, PDF software, and security products are applied within one month of release.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "8dc08123e8d7"
+        },
+        {
+          "id": "patch-apps-12",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in office productivity suites, web browsers and their extensions, email clients, PDF software, and security products are applied within 48 hours of release when vulnerabilities are assessed as critical by vendors or when working exploits exist.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "42347704920f"
+        },
+        {
+          "id": "patch-apps-13",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in office productivity suites, web browsers and their extensions, email clients, PDF software, and security products are applied within two weeks of release when vulnerabilities are assessed as non-critical by vendors and no working exploits exist.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "951a5e1090a5"
+        },
+        {
+          "id": "patch-apps-14",
+          "text": "Applications other than office productivity suites, web browsers and their extensions, email clients, PDF software, Adobe Flash Player, and security products that are no longer supported by vendors are removed.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "25ee11c4908a"
+        }
+      ]
+    },
+    {
+      "id": "patch-os",
+      "name": "Patch operating systems",
+      "criteria": [
+        {
+          "id": "patch-os-01",
+          "text": "An automated method of asset discovery is used at least fortnightly to support the detection of assets for subsequent vulnerability scanning activities.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "cd671f4de2cc"
+        },
+        {
+          "id": "patch-os-02",
+          "text": "A vulnerability scanner with an up-to-date vulnerability database is used for vulnerability scanning activities.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "1d5914555577"
+        },
+        {
+          "id": "patch-os-03",
+          "text": "A vulnerability scanner is used at least daily to identify missing patches or updates for vulnerabilities in operating systems of internet-facing servers and internet-facing network devices.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "6dcb95859ea3"
+        },
+        {
+          "id": "patch-os-04",
+          "text": "A vulnerability scanner is used at least fortnightly to identify missing patches or updates for vulnerabilities in operating systems of workstations, non-internet-facing servers and non-internet-facing network devices.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "cd4b33607196"
+        },
+        {
+          "id": "patch-os-05",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in operating systems of internet-facing servers and internet-facing network devices are applied within 48 hours of release when vulnerabilities are assessed as critical by vendors or when working exploits exist.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "35986be4cda4"
+        },
+        {
+          "id": "patch-os-06",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in operating systems of internet-facing servers and internet-facing network devices are applied within two weeks of release when vulnerabilities are assessed as non-critical by vendors and no working exploits exist.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "50efbd0a5cda"
+        },
+        {
+          "id": "patch-os-07",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in operating systems of workstations, non-internet-facing servers and non-internet-facing network devices are applied within one month of release.",
+          "required_at_levels": [
+            1,
+            2
+          ],
+          "sha256": "8a353c3b7b5b"
+        },
+        {
+          "id": "patch-os-08",
+          "text": "Operating systems that are no longer supported by vendors are replaced.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "68bbe0ac3f38"
+        },
+        {
+          "id": "patch-os-09",
+          "text": "A vulnerability scanner is used at least fortnightly to identify missing patches or updates for vulnerabilities in drivers.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "0d04f921c35b"
+        },
+        {
+          "id": "patch-os-10",
+          "text": "A vulnerability scanner is used at least fortnightly to identify missing patches or updates for vulnerabilities in firmware.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "0c4433df97e6"
+        },
+        {
+          "id": "patch-os-11",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in operating systems of workstations, non-internet-facing servers and non-internet-facing network devices are applied within 48 hours of release when vulnerabilities are assessed as critical by vendors or when working exploits exist.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "5327e114287b"
+        },
+        {
+          "id": "patch-os-12",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in operating systems of workstations, non-internet-facing servers and non-internet-facing network devices are applied within one month of release when vulnerabilities are assessed as non-critical by vendors and no working exploits exist.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "0c9c3405945d"
+        },
+        {
+          "id": "patch-os-13",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in drivers are applied within 48 hours of release when vulnerabilities are assessed as critical by vendors or when working exploits exist.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "2e7744b60b85"
+        },
+        {
+          "id": "patch-os-14",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in drivers are applied within one month of release when vulnerabilities are assessed as non-critical by vendors and no working exploits exist.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "faf7afc517c5"
+        },
+        {
+          "id": "patch-os-15",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in firmware are applied within 48 hours of release when vulnerabilities are assessed as critical by vendors or when working exploits exist.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "711c15144b4f"
+        },
+        {
+          "id": "patch-os-16",
+          "text": "Patches, updates or other vendor mitigations for vulnerabilities in firmware are applied within one month of release when vulnerabilities are assessed as non-critical by vendors and no working exploits exist.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "e8b6f1d7ca4f"
+        },
+        {
+          "id": "patch-os-17",
+          "text": "The latest release, or the previous release, of operating systems are used.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "1914cbdec0ea"
+        }
+      ]
+    },
+    {
+      "id": "mfa",
+      "name": "Multi-factor authentication",
+      "criteria": [
+        {
+          "id": "mfa-01",
+          "text": "Multi-factor authentication is used to authenticate users to their organisation’s online services that process, store or communicate their organisation’s sensitive data.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "39fb79c145dc"
+        },
+        {
+          "id": "mfa-02",
+          "text": "Multi-factor authentication is used to authenticate users to third-party online services that process, store or communicate their organisation’s sensitive data.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "1aac5466587d"
+        },
+        {
+          "id": "mfa-03",
+          "text": "Multi-factor authentication (where available) is used to authenticate users to third-party online services that process, store or communicate their organisation’s non-sensitive data.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "d345460a1ef1"
+        },
+        {
+          "id": "mfa-04",
+          "text": "Multi-factor authentication is used to authenticate users to their organisation’s online customer services that process, store or communicate their organisation’s sensitive customer data.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "f07919354946"
+        },
+        {
+          "id": "mfa-05",
+          "text": "Multi-factor authentication is used to authenticate users to third-party online customer services that process, store or communicate their organisation’s sensitive customer data.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "e4be2edb55dd"
+        },
+        {
+          "id": "mfa-06",
+          "text": "Multi-factor authentication is used to authenticate customers to online customer services that process, store or communicate sensitive customer data.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "693ed7264f17"
+        },
+        {
+          "id": "mfa-07",
+          "text": "Multi-factor authentication uses either: something users have and something users know, or something users have that is unlocked by something users know or are.",
+          "required_at_levels": [
+            1,
+            2,
+            3
+          ],
+          "sha256": "0ced7c8b323d"
+        },
+        {
+          "id": "mfa-08",
+          "text": "Multi-factor authentication is used to authenticate privileged users of systems.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "8fdb83c7a0af"
+        },
+        {
+          "id": "mfa-09",
+          "text": "Multi-factor authentication is used to authenticate unprivileged users of systems.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "22e88882792c"
+        },
+        {
+          "id": "mfa-10",
+          "text": "Multi-factor authentication used for authenticating users of online services is phishing-resistant.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "bb50338084e0"
+        },
+        {
+          "id": "mfa-11",
+          "text": "Multi-factor authentication used for authenticating customers of online customer services provides a phishing-resistant option.",
+          "required_at_levels": [
+            2
+          ],
+          "sha256": "d71c5f9395c5"
+        },
+        {
+          "id": "mfa-12",
+          "text": "Multi-factor authentication used for authenticating users of systems is phishing-resistant.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "721b47268cf5"
+        },
+        {
+          "id": "mfa-13",
+          "text": "Successful and unsuccessful multi-factor authentication events are centrally logged.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "4e2859f76b2c"
+        },
+        {
+          "id": "mfa-14",
+          "text": "Event logs are protected from unauthorised modification and deletion.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "d4f851b53958"
+        },
+        {
+          "id": "mfa-15",
+          "text": "Event logs from internet-facing servers are analysed in a timely manner to detect cyber security events.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "5282b6204ae6"
+        },
+        {
+          "id": "mfa-16",
+          "text": "Cyber security events are analysed in a timely manner to identify cyber security incidents.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "2208a01f4c22"
+        },
+        {
+          "id": "mfa-17",
+          "text": "Cyber security incidents are reported to the chief information security officer, or one of their delegates, as soon as possible after they occur or are discovered.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "12b115a9f355"
+        },
+        {
+          "id": "mfa-18",
+          "text": "Cyber security incidents are reported to ASD as soon as possible after they occur or are discovered.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "0136e6604d21"
+        },
+        {
+          "id": "mfa-19",
+          "text": "Following the identification of a cyber security incident, the cyber security incident response plan is enacted.",
+          "required_at_levels": [
+            2,
+            3
+          ],
+          "sha256": "451bda7a8291"
+        },
+        {
+          "id": "mfa-20",
+          "text": "Multi-factor authentication is used to authenticate users of data repositories.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "307f3fba0ca4"
+        },
+        {
+          "id": "mfa-21",
+          "text": "Multi-factor authentication used for authenticating customers of online customer services is phishing-resistant.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "f64d3a255129"
+        },
+        {
+          "id": "mfa-22",
+          "text": "Multi-factor authentication used for authenticating users of data repositories is phishing-resistant.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "006167180638"
+        },
+        {
+          "id": "mfa-23",
+          "text": "Event logs from non-internet-facing servers are analysed in a timely manner to detect cyber security events.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "ff86cd6e8919"
+        },
+        {
+          "id": "mfa-24",
+          "text": "Event logs from workstations are analysed in a timely manner to detect cyber security events.",
+          "required_at_levels": [
+            3
+          ],
+          "sha256": "757454136b76"
+        }
+      ]
+    }
+  ]
+}
