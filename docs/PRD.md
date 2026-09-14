@@ -5,7 +5,7 @@ source verification in section 11 rather than on code.
 **Written:** 11-09-2026
 **Revised:** 11-09-2026 after reading the official ASD source documents
 **Revised:** 14-09-2026 for the stage 4.5 outcome model and the release review
-**Author:** Jackson Ng, with Claude
+**Author:** Jackson Ng
 
 ---
 
