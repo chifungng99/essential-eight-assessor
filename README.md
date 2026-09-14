@@ -3,14 +3,16 @@
 A command line self-assessment tool for the Australian Signals Directorate's
 **Essential Eight Maturity Model**. You answer a structured set of questions about
 your environment, and it computes a maturity level per mitigation strategy and
-writes a gap report telling you what is missing and what to fix first.
+writes a gap report naming every requirement that was not met, grouped by the
+maturity level it belongs to. It reports gaps; it does not rank them or tell you
+which to remediate first.
 
 > **This is an indicative self-assessment, not a certified ASD assessment.**
 > It has no affiliation with, and no endorsement from, the Australian Signals
 > Directorate or the Australian Cyber Security Centre. Its output is a starting
 > point for a conversation, not evidence of compliance.
 
-**Status: in development.** The control set is built and tested. Scoring is next, so the tool cannot yet produce a rating.
+**Status: v1 complete.** The control set, the scoring engine, the assessment outcomes including `not_applicable` and `alternate_control` with mandatory justifications, the CLI and report rendering are all built and tested, and the tool runs an assessment end to end in plain text, Markdown and HTML. The human review gate described below has been completed: the extracted criteria were checked against Appendices A to C of the published model, and the source edition was verified against ASD's published page.
 
 ---
 
@@ -32,19 +34,88 @@ When an Essentials chapter is published, supporting it is a new data file and a 
 set of fixtures, not a rewrite.
 
 **The tool refuses to rate against a control set it cannot verify is current.** The
-criteria file carries a `sourced_on` date. Past a configured age the tool warns
-loudly, and it will not silently produce a maturity rating from a stale model. A
-tool that returns "Maturity Level Two" against superseded criteria is worse than one
-that stops, because nobody checks a number that looks plausible.
+criteria file carries a `sourced_on` date. Past a configured age, loading it raises
+rather than returning, so the tool stops instead of producing a maturity rating from
+a stale model. There is no flag on `assess` to wave that through. A tool that returns
+"Maturity Level Two" against superseded criteria is worse than one that stops,
+because nobody checks a number that looks plausible.
 
 ## Running it
 
 Python 3.9 or later. No dependencies, nothing to install.
 
 ```
-python3 -m unittest discover -s tests -v     # 28 tests
+python3 -m unittest discover -s tests -v     # 149 tests
 python3 tools/review_controls.py --level 1   # print the control set for review
 ```
+
+## Doing an assessment
+
+```
+python3 -m e8 init --organisation "Your Org Pty Ltd"   # writes my.assessment.json
+python3 -m e8 assess my.assessment.json
+python3 -m e8 assess my.assessment.json --format html --out reports/assessment.html
+```
+
+A completed assessment, and any report generated from it, is a map of where an
+organisation is weakest. Treat both as sensitive. `.gitignore` already covers
+`assessments/`, `*.assessment.json` and `reports/`, `init` warns when you write to a
+filename none of those patterns cover, and nothing is ever transmitted anywhere: the
+tool makes no network calls at runtime.
+
+`--format` takes `text`, `md` or `html`. Two worked examples are committed, rendered in all three formats: read
+[`examples/harbourline-freight.md`](examples/harbourline-freight.md) for a
+straightforward assessment, and
+[`examples/redgum-plumbing.md`](examples/redgum-plumbing.md) for a small business with
+no internet-facing servers and no online customer services, which shows exclusions,
+an alternate control and the declarations section. Those files are also the golden
+files the tests compare against, so they cannot drift from the real output.
+
+`init` writes one entry per criterion, every one set to `unknown`. Read the requirements
+alongside with `review_controls.py` and answer each one:
+
+| Answer | Means | Effect on the rating |
+|---|---|---|
+| `met` | Implemented as written | Satisfies the requirement |
+| `alternate_control` | The objective is met by a different control | Satisfies the requirement |
+| `not_met` | Not implemented, or not adequately | Fails the requirement |
+| `not_applicable` | The asset or environment does not exist here | Removes the requirement from the set |
+| `unknown` | Not assessed, or no visibility | Fails the requirement |
+
+`unknown` is a real answer and scores as not met, which is the point: making the honest
+answer available is what keeps the result honest. It needs no justification, because
+making the honest answer expensive is how a tool fills up with confident guesses.
+
+`not_applicable` and `alternate_control` do need one, in a `justifications` block keyed
+by criterion id. They are the only two answers that change a rating without anything
+being implemented, so each is printed verbatim in the report and labelled there as
+self-declared. An alternate control counts towards the rating exactly as ASD's
+assessment process guide says it should, and the report states plainly that it has not
+been independently verified, because it is not equivalent evidence to an implemented
+control.
+
+Two guard rails follow from that. A maturity level whose requirements were all declared
+not applicable is never awarded, since nothing was demonstrated. And an answers file
+that marks an entire mitigation strategy not applicable is refused outright, because
+ASD does not permit a whole strategy to be scoped out.
+
+Every report shows the applicable base each level was computed from, for example
+`ML1 5/8`. A rating drawn from five of eight requirements is a narrower claim than the
+same rating drawn from eight of eight, and a reader has to be able to tell which one
+they are holding.
+
+Every format carries the disclaimer and names the criteria behind the rating, and the
+HTML report is a single self-contained file with no scripts and no external references,
+because a compliance report that pulls a font from a CDN both breaks the offline
+constraint and leaks the fact that it was opened.
+
+There are three things the CLI
+deliberately will not do. It has no `--allow-stale`, because refusing to rate against a
+superseded model is the guarantee the tool is built on. It has no `--fail-under` for use
+as a CI gate, because that is the affordance that turns an indicative self-assessment
+into something treated as a compliance control. And it gives no single overall figure,
+because three of the eight mitigation strategies are in scope and a combined number
+would be read as an Essential Eight rating.
 
 ## Rebuilding the control set
 
@@ -95,9 +166,11 @@ most dangerous change anyone can make to this repository.
 
 ## The limit of the tests
 
-The suite proves the loader, the validator and the staleness refusal work. It
-**cannot** prove the criteria were extracted correctly. It has no access to the
-source document and no judgement. If a requirement were truncated, every test would
+The suite covers the loader, the validator, the staleness refusal, the scoring
+engine including not-applicable handling and alternate controls, answers file
+validation, all three report formats and the CLI, across 149 tests. It **cannot**
+prove the criteria were extracted correctly. It has no access to the source document
+and no judgement. If a requirement were truncated, every one of those tests would
 still pass.
 
 That is what `tools/review_controls.py` is for, and why the project has a human
@@ -110,9 +183,9 @@ not an admission.
 Version one covers three mitigation strategies in full, across Maturity Levels One
 to Three:
 
-- Patch Applications
-- Patch Operating Systems
-- Multi-factor Authentication
+- Patch applications
+- Patch operating systems
+- Multi-factor authentication
 
 Three strategies covered properly is more useful, and more honest, than eight
 covered shallowly. The remaining five are additive once the engine is proven.

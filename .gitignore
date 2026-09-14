@@ -26,3 +26,11 @@ reports/
 # these PDFs are explicitly excluded from that licence, so redistributing the files
 # would redistribute those marks. README.md says where to download them.
 sources/
+
+# Assistant output folders.
+# Some desktop tooling writes generated deliverables into a "Claude outputs" folder
+# inside whichever project folder is open at the time, so unrelated work can appear
+# here without anyone putting it here deliberately. Work generated for a different
+# task has no business in this repository, and a folder that reappears on its own
+# should never be one `git add -A` away from being committed.
+Claude outputs/
