@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "essential-eight-assessor"
+version = "0.1.0"
+description = "Self-assessment tool for the ASD Essential Eight Maturity Model"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "chifungng99"}]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+e8 = "e8.cli:main"
+
+[tool.setuptools]
+packages = ["e8"]
+
+[tool.setuptools.package-data]
+e8 = []
